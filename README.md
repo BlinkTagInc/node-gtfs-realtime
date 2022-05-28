@@ -17,8 +17,7 @@
 
 <hr>
 
-`node-GTFS-Realtime` fetches transit data in [GTFS-realtime format](https://developers.google.com/transit/) saves it as a JSON file. 
-You can use it as a [command-line tool](#command-line-examples) or as a [node.js module](#code-example).
+[GTFS-realtime](https://developers.google.com/transit/gtfs-realtime) transit data is in [protobuf format](https://developers.google.com/protocol-buffers) which means its not human-readable by default. `node-GTFS-Realtime` aims to make it fast and easy to inspect GTFS-realtime data by providing a one-line command for downloading [GTFS-realtime format](https://developers.google.com/transit/gtfs-realtime) data and converting to JSON.
 
 Run it right now from your command line:
 
@@ -26,8 +25,50 @@ Run it right now from your command line:
 npx gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx
 ```
 
-This will save a file to the current directory, named like `gtfs-realtime-2022-05-28T002330.164Z.json` using the current time.
+The command above will fetch BART's GTFS-Realtime trip updates and save them to a file to the current directory in JSON format, named like `gtfs-realtime-2022-05-28T002330.164Z.json` (using the current time). You can open the resulting file in a text editor to review.
 
+`node-GTFS-Realtime` can be used as a [command-line tool](#command-line-examples) or as a [node.js module](#code-example).
+
+## Example JSON
+
+Below is an example of the JSON result for a GTFS-Realtime Trip Updates request:
+
+```json
+{
+  "header": {
+    "gtfsRealtimeVersion": "1.0",
+    "incrementality": "FULL_DATASET",
+    "timestamp": "1653701655"
+  },
+  "entity": [
+    {
+      "id": "1001663",
+      "tripUpdate": {
+        "trip": {
+          "tripId": "1001663",
+          "scheduleRelationship": "SCHEDULED"
+        },
+        "stopTimeUpdate": [
+          {
+            "stopSequence": 13,
+            "arrival": {
+              "delay": 25,
+              "time": "1653701754",
+              "uncertainty": 30
+            },
+            "departure": {
+              "delay": 25,
+              "time": "1653701775",
+              "uncertainty": 30
+            },
+            "stopId": "SANL"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
 
 ## Installation
 
@@ -35,11 +76,21 @@ If you would like to use this library as a command-line utility, you can install
 
     npm install gtfs-realtime -g
 
+Or you can use it directly via npx:
+
+    npx gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx
+
 If you are using this as a node module as part of an application, you can include it in your project's `package.json` file.
 
 ## Quick Start
 
 ### Command-Line Examples
+
+Run via npx:
+
+    npx gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx
+
+If installed globally:
 
     gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx
 
@@ -55,7 +106,7 @@ import gtfsRealtime from 'gtfs';
 const config = {
   url: 'http://api.bart.gov/gtfsrt/tripupdate.aspx',
   output: '/path/to/save/file.json',
-  header: ['Authorization: bearer 12345']
+  header: ['Authorization: bearer 12345'],
 };
 
 gtfsRealtime(config)
@@ -69,35 +120,38 @@ gtfsRealtime(config)
 
 ## Command-Line Usage
 
-The `gtfs-realtime` command-line utility will download GTFS-Realtime data and save it as a JSON file.
+```
+gtfs-realtime [options...] <url>
 
-### gtfs-realtime Command-line options
+The `gtfs-realtime` command-line utility will download GTFS-Realtime data from the specified URL and save it as a JSON file.
 
-`silent`
+### Options
+
+`-s, --silent`
 
 Hides all console output
 
     gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx --silent
 
-`header`
+`-H, --header`
 
 Specify one or more HTTP headers to be included in the request.
 
     gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx --header "Authorization: bearer 1234567" --header "test:true"
 
-`output`
+`-o, --output`
 
 Specify a path to save the JSON file. Optional, defaults to the current directory using a filename with the current time.
 
     gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx --output /path/to/save/file.json
 
-`help`
+`--help`
 
 Show help.
 
     gtfs-realtime --help
 
-`version`
+`--version`
 
 Show version
 
@@ -110,3 +164,4 @@ Pull requests are welcome, as is feedback and [reporting issues](https://github.
 ### Linting
 
     npm run lint
+```

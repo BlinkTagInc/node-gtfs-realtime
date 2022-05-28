@@ -1,0 +1,65 @@
+{
+  "name": "gtfs-realtime",
+  "version": "0.1.0",
+  "description": "Fetch GTFS Realtime data and convert to JSON",
+  "keywords": [
+    "transit",
+    "gtfs",
+    "transportation",
+    "gtfs-realtime"
+  ],
+  "bugs": {
+    "url": "https://github.com/blinktaginc/node-gtfs-realtime/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blinktaginc/node-gtfs-realtime.git"
+  },
+  "license": "MIT",
+  "author": "Brendan Nee <brendan@blinktag.com>",
+  "contributors": [],
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "gtfs-realtime": "bin/gtfs-realtime.js"
+  },
+  "types": "@types",
+  "scripts": {
+    "dtslint": "dtslint @types",
+    "lint": "eslint **/*.js",
+    "lint-fix": "eslint **/*.js --fix"
+  },
+  "dependencies": {
+    "gtfs-realtime-bindings": "^0.0.6",
+    "lodash-es": "^4.17.21",
+    "pretty-error": "^4.0.0",
+    "request": "^2.88.2",
+    "sanitize-filename": "^1.6.3",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "dtslint": "^4.2.1",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-xo": "^0.41.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.6.2",
+    "pretty-quick": "^3.1.3"
+  },
+  "engines": {
+    "node": ">= 16.15.0"
+  },
+  "release-it": {
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/keep-a-changelog": {
+        "filename": "CHANGELOG.md"
+      }
+    }
+  },
+  "prettier": {
+    "singleQuote": true
+  }
+}

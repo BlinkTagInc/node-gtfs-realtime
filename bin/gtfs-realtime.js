@@ -10,28 +10,34 @@ const { argv } = yargs(hideBin(process.argv))
   .usage('Usage: $0 <url>')
   .help()
   .version()
-  .command('$0 <url>', 'Fetch GTFS-Realtime data and convert to JSON', (yargs) => {
-    yargs.positional('url', {
-      describe: 'GTFS-Realtime URL',
-      type: 'string'
-    })
-      .option('H', {
-        alias: 'header',
-        array: true,
-        describe: 'HTTP headers to be included in the request for GTFS-Realtime data (optional)',
-        type: 'string'
-      })
-      .option('o', {
-        alias: 'output',
-        describe: 'Path to output file (optional)',
-        type: 'string'
-      })
-      .option('s', {
-        alias: 'silent',
-        describe: 'Hide all output',
-        type: 'boolean'
-      });
-  });
+  .command(
+    '$0 <url>',
+    'Fetch GTFS-Realtime data and convert to JSON',
+    (yargs) => {
+      yargs
+        .positional('url', {
+          describe: 'GTFS-Realtime URL',
+          type: 'string',
+        })
+        .option('H', {
+          alias: 'header',
+          array: true,
+          describe:
+            'HTTP headers to be included in the request for GTFS-Realtime data (optional)',
+          type: 'string',
+        })
+        .option('o', {
+          alias: 'output',
+          describe: 'Path to output file (optional)',
+          type: 'string',
+        })
+        .option('s', {
+          alias: 'silent',
+          describe: 'Hide all output',
+          type: 'boolean',
+        });
+    }
+  );
 
 const handleError = (error) => {
   const text = error || 'Unknown Error';

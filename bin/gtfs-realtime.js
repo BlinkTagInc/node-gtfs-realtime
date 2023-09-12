@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
+import yargs from 'yargs'
+import { hideBin } from 'yargs/helpers'
 
-import { formatError } from '../lib/log-utils.js';
-import gtfsRealtime from '../lib/gtfs-realtime.js';
+import { formatError } from '../lib/log-utils.js'
+import gtfsRealtime from '../lib/gtfs-realtime.js'
 
 const { argv } = yargs(hideBin(process.argv))
   .usage('Usage: $0 <url>')
@@ -35,20 +35,20 @@ const { argv } = yargs(hideBin(process.argv))
           alias: 'silent',
           describe: 'Hide all output',
           type: 'boolean',
-        });
-    }
-  );
+        })
+    },
+  )
 
 const handleError = (error) => {
-  const text = error || 'Unknown Error';
-  process.stdout.write(`\n${formatError(text)}\n`);
-  console.error(error);
-  process.exit(1);
-};
+  const text = error || 'Unknown Error'
+  process.stdout.write(`\n${formatError(text)}\n`)
+  console.error(error)
+  process.exit(1)
+}
 
 const setupImport = async () => {
-  await gtfsRealtime(argv);
-  process.exit();
-};
+  await gtfsRealtime(argv)
+  process.exit()
+}
 
-setupImport().catch(handleError);
+setupImport().catch(handleError)

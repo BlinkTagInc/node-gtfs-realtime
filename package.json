@@ -6,7 +6,8 @@
     "transit",
     "gtfs",
     "transportation",
-    "gtfs-realtime"
+    "gtfs-realtime",
+    "gtfs-rt"
   ],
   "bugs": {
     "url": "https://github.com/blinktaginc/node-gtfs-realtime/issues"

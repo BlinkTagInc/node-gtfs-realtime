@@ -25,7 +25,7 @@ Run it right now from your command line:
 npx gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx
 ```
 
-The command above will fetch BART's GTFS-Realtime trip updates and save them to a file to the current directory in JSON format, named like `gtfs-realtime-2022-05-28T002330.164Z.json` (using the current time). You can open the resulting file in a text editor to review.
+The command above will fetch BART's GTFS-Realtime trip updates and save them to a file to the current directory in JSON format, named like `gtfs-realtime-tripupdate-2022-05-28T002330.164Z.json` (using the current time). You can open the resulting file in a text editor to review.
 
 `node-GTFS-Realtime` can be used as a [command-line tool](#command-line-examples) or as a [node.js module](#code-example).
 
@@ -72,13 +72,13 @@ Below is an example of the JSON result for a GTFS-Realtime Trip Updates request:
 
 ## Installation
 
-If you would like to use this library as a command-line utility, you can install it globally directly from [npm](https://npmjs.org):
+To use this library as a command-line utility, install it globally directly from [npm](https://npmjs.org):
 
     npm install gtfs-realtime -g
 
-Or you can use it directly via npx:
+Or use it directly via npx:
 
-    npx gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx
+    npx gtfs-realtime@latest http://api.bart.gov/gtfsrt/tripupdate.aspx
 
 If you are using this as a node module as part of an application, you can include it in your project's `package.json` file.
 
@@ -88,7 +88,7 @@ If you are using this as a node module as part of an application, you can includ
 
 Run via npx:
 
-    npx gtfs-realtime http://api.bart.gov/gtfsrt/tripupdate.aspx
+    npx gtfs-realtime@latest http://api.bart.gov/gtfsrt/tripupdate.aspx
 
 If installed globally:
 

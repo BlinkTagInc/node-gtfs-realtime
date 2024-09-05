@@ -37,7 +37,7 @@ const gtfsRealtime = async (config: IArgs) => {
 
   const filepath = formatFilename(gtfsRealtimeType, config.output)
   await writeFile(filepath, JSON.stringify(feed, null, 2))
-  log(`GTFS-Realtime saved as JSON to ${filepath}`)
+  log(`GTFS-Realtime saved as JSON to ${filepath}\n`)
 }
 
 export default gtfsRealtime

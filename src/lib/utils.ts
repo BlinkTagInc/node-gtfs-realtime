@@ -21,8 +21,32 @@ export const formatHeaders = (
   )
 }
 
-export const formatFilename = (output?: string) => {
+export const formatFilename = (gtfsRealtimeType: string, output?: string) => {
   const isoDate = new Date().toISOString()
-  const filepath = output ?? `gtfs-realtime-${isoDate}.json`
+  const filepath = output ?? `gtfs-realtime-${gtfsRealtimeType}-${isoDate}.json`
   return sanitize(filepath)
+}
+
+export const determineGtfsRealtimeType = (feed: any) => {
+  const hasTripUpdate = feed.entity.some((entity: any) => entity.tripUpdate)
+
+  if (hasTripUpdate) {
+    return 'tripupdate'
+  }
+
+  const hasVehiclePosition = feed.entity.some(
+    (entity: any) => entity.vehicle && entity.vehicle.position,
+  )
+
+  if (hasVehiclePosition) {
+    return 'vehicleposition'
+  }
+
+  const hasAlert = feed.entity.some((entity: any) => entity.alert)
+
+  if (hasAlert) {
+    return 'alert'
+  }
+
+  return 'unknown'
 }

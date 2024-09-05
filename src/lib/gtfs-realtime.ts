@@ -1,7 +1,11 @@
 import { writeFile } from 'node:fs/promises'
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 
-import { formatFilename, formatHeaders } from './utils.ts'
+import {
+  determineGtfsRealtimeType,
+  formatFilename,
+  formatHeaders,
+} from './utils.ts'
 import { log as _log, logError as _logError } from './log-utils.ts'
 
 import type { IArgs } from '../types/global_interfaces.ts'
@@ -29,7 +33,9 @@ const gtfsRealtime = async (config: IArgs) => {
     new Uint8Array(buffer),
   )
 
-  const filepath = formatFilename(config.output)
+  const gtfsRealtimeType = determineGtfsRealtimeType(feed)
+
+  const filepath = formatFilename(gtfsRealtimeType, config.output)
   await writeFile(filepath, JSON.stringify(feed, null, 2))
   log(`GTFS-Realtime saved as JSON to ${filepath}`)
 }

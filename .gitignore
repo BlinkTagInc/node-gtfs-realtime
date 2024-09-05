@@ -1,8 +1,8 @@
+# dependencies
 node_modules
-config*.json
-!config-sample*.json
-test/fixture/tmp/*.txt
-gtfs-export
 
 .git
 .DS_Store
+
+# build files
+/dist

@@ -19,32 +19,34 @@
   "author": "Brendan Nee <brendan@blinktag.com>",
   "contributors": [],
   "type": "module",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "bin": {
-    "gtfs-realtime": "bin/gtfs-realtime.js"
+    "gtfs-realtime": "dist/bin/gtfs-realtime.js"
   },
-  "types": "@types",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "dtslint": "dtslint @types",
-    "lint": "eslint **/*.js",
-    "lint-fix": "eslint **/*.js --fix",
-    "prepare": "husky install"
+    "build": "tsup",
+    "prepare": "husky"
   },
   "dependencies": {
-    "chalk": "^5.3.0",
     "gtfs-realtime-bindings": "^1.1.1",
     "lodash-es": "^4.17.21",
     "pretty-error": "^4.0.0",
     "sanitize-filename": "^1.6.3",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "yoctocolors": "^2.1.1"
   },
   "devDependencies": {
-    "dtslint": "^4.2.1",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.14.9",
+    "@types/yargs": "^17.0.32",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.10",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.2"
   },
   "engines": {
     "node": ">= 20"

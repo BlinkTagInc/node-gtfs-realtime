@@ -160,8 +160,4 @@ Show version
 ## Contributing
 
 Pull requests are welcome, as is feedback and [reporting issues](https://github.com/blinktaginc/node-gtfs-realtime/issues).
-
-### Linting
-
-    npm run lint
 ```

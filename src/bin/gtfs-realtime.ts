@@ -50,6 +50,7 @@ const handleError = (error = new Error('Unknown Error')) => {
   console.error(pe.render(error))
   process.exit(1)
 }
+
 const setupImport = async () => {
   if (argv.url === undefined || argv.url === null) {
     return handleError(new Error('URL is required'))

@@ -1,1 +1,1 @@
-export * from './lib/gtfs-realtime.ts'
+export { default } from './lib/gtfs-realtime.js'

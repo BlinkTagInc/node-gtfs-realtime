@@ -101,12 +101,11 @@ With custom HTTP headers
 ### Code example
 
 ```js
-import gtfsRealtime from 'gtfs';
+import gtfsRealtime from 'gtfs-realtime';
 
 const config = {
   url: 'http://api.bart.gov/gtfsrt/tripupdate.aspx',
-  output: '/path/to/save/file.json',
-  header: ['Authorization: bearer 12345'],
+  output: 'path/to/save/file.json'
 };
 
 gtfsRealtime(config)

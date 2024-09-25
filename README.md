@@ -110,7 +110,7 @@ const config = {
 
 gtfsRealtime(config)
   .then(() => {
-    console.log('Import Successful');
+    console.log('GTFS-Realtime Download Successful');
   })
   .catch((err) => {
     console.error(err);

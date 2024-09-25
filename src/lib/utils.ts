@@ -1,5 +1,41 @@
-import sanitize from 'sanitize-filename'
+import { dirname } from 'node:path'
+import { access, mkdir } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
+
+import untildify from 'untildify'
 import { fromPairs } from 'lodash-es'
+
+/*
+ * Prepare the output directory.
+ */
+export async function prepDirectory(outputPath: string | undefined) {
+  if (!outputPath) {
+    return
+  }
+
+  const folderPath = dirname(outputPath)
+  // Check if folderPath exists
+  try {
+    await access(folderPath)
+  } catch (error: any) {
+    try {
+      await mkdir(folderPath, { recursive: true })
+    } catch (error: any) {
+      if (error?.code === 'ENOENT') {
+        throw new Error(
+          `Unable to write to ${folderPath}. Try running this command from a writable directory.`,
+        )
+      }
+
+      throw error
+    }
+  }
+
+  // Check if the file exists, if so, throw an error
+  if (existsSync(outputPath)) {
+    throw new Error(`File already exists: ${outputPath}`)
+  }
+}
 
 export const formatHeaders = (
   headers: string[] | undefined,
@@ -21,10 +57,15 @@ export const formatHeaders = (
   )
 }
 
-export const formatFilename = (gtfsRealtimeType: string, output?: string) => {
+export const formatFilename = (
+  gtfsRealtimeType: string,
+  outputPath?: string,
+) => {
   const isoDate = new Date().toISOString()
-  const filepath = output ?? `gtfs-realtime-${gtfsRealtimeType}-${isoDate}.json`
-  return sanitize(filepath)
+  const filepath = outputPath
+    ? untildify(outputPath)
+    : `gtfs-realtime-${gtfsRealtimeType}-${isoDate}.json`
+  return filepath
 }
 
 export const determineGtfsRealtimeType = (feed: any) => {

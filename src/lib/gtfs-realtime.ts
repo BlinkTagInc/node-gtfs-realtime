@@ -5,6 +5,7 @@ import {
   determineGtfsRealtimeType,
   formatFilename,
   formatHeaders,
+  prepDirectory,
 } from './utils.ts'
 import { log as _log, logError as _logError } from './log-utils.ts'
 
@@ -36,6 +37,7 @@ const gtfsRealtime = async (config: IArgs) => {
   const gtfsRealtimeType = determineGtfsRealtimeType(feed)
 
   const filepath = formatFilename(gtfsRealtimeType, config.output)
+  await prepDirectory(filepath)
   await writeFile(filepath, JSON.stringify(feed, null, 2))
   log(`GTFS-Realtime saved as JSON to ${filepath}\n`)
 }

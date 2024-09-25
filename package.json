@@ -33,7 +33,7 @@
     "gtfs-realtime-bindings": "^1.1.1",
     "lodash-es": "^4.17.21",
     "pretty-error": "^4.0.0",
-    "sanitize-filename": "^1.6.3",
+    "untildify": "^5.0.0",
     "yargs": "^17.7.2",
     "yoctocolors": "^2.1.1"
   },

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed export as npm module
+- Fixed `output` directory creation
 
 ## [0.3.1] - 2024-09-05
 

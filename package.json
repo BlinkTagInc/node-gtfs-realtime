@@ -1,6 +1,6 @@
 {
   "name": "gtfs-realtime",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Fetch GTFS Realtime data and convert to JSON",
   "keywords": [
     "transit",
